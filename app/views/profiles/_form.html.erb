@@ -1,0 +1,18 @@
+<%= form_for @profile do |f| %>
+
+  <% @profile.errors.full_messages.each do |msg| %>
+    <p><%= msg %></p>
+  <% end %>
+
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name, placeholder: "First Name" %>
+
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name, placeholder: "Last Name" %>
+
+  <%= f.label :bio %>
+  <%= f.text_area :bio, rows: 5, placeholder: "Tell us about yourself.." %>
+
+  <%= f.submit "Create Profile" %>
+
+<% end %>
