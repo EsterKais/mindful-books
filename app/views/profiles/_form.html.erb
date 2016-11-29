@@ -1,18 +1,25 @@
-<%= form_for @profile do |f| %>
+<div class="form">
 
-  <% @profile.errors.full_messages.each do |msg| %>
-    <p><%= msg %></p>
+  <%= form_for @profile do |f| %>
+
+    <% @profile.errors.full_messages.each do |msg| %>
+      <p><%= msg %></p>
+    <% end %>
+
+    <%= f.label :first_name, class: "form-field" %>
+    <br>
+    <%= f.text_field :first_name, placeholder: "First Name", class: "form-field" %>
+    <br>
+    <%= f.label :last_name, class: "form-field" %>
+    <br>
+    <%= f.text_field :last_name, placeholder: "Last Name", class: "form-field" %>
+    <br>
+    <%= f.label :bio, class: "form-field" %>
+    <br>
+    <%= f.text_area :bio, rows: 5, placeholder: "Tell us about yourself..", class: "form-area" %>
+    <br>
+    <%= f.submit "Create Profile" %>
+
   <% end %>
 
-  <%= f.label :first_name %>
-  <%= f.text_field :first_name, placeholder: "First Name" %>
-
-  <%= f.label :last_name %>
-  <%= f.text_field :last_name, placeholder: "Last Name" %>
-
-  <%= f.label :bio %>
-  <%= f.text_area :bio, rows: 5, placeholder: "Tell us about yourself.." %>
-
-  <%= f.submit "Create Profile" %>
-
-<% end %>
+</div>

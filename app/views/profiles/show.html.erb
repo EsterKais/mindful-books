@@ -1,4 +1,5 @@
 <div class="container">
+  
   <h2> Hello, <%= @profile.first_name %>! </h2>
 
   <div class="profile-info">
@@ -8,6 +9,7 @@
         <p> First name: <%= @profile.first_name %> </p>
         <p> Last name: <%= @profile.last_name %> </p>
         <p> About me: <%= @profile.bio %> </p>
+        <p> <%= link_to "Update", edit_profile_path(@profile) %>
     </div>
 
     <div class="profile-photo">

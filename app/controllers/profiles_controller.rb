@@ -18,6 +18,18 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def edit
+    @profile = Profile.find(params[:id])
+  end
+
+  def update
+    if @profile.update(profile_params)
+      redirect_to profile_path(@profile), notice: "Details Updated!"
+    else
+      render :edit
+    end
+  end
+
   private
 
     def set_profile
