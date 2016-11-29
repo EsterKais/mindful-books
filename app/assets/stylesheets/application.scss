@@ -19,6 +19,23 @@ $main-colour:            #C7D66D;
 $lighter-main-colour:    #DCEAB2;
 $off_colour:             #82735C;
 
+// BODY
+body {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+// CONTAINER
+.container {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-left: auto;
+  margin-right: auto;
+
+  padding: 0 20px;
+  max-width: 1020px;
+  min-width: 360px;
+}
+
 // HEADER
 .header {
 

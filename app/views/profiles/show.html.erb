@@ -1,1 +1,19 @@
-<h2> Hello, <%= @profile.first_name %>! </h1>
+<div class="container">
+  <h2> Hello, <%= @profile.first_name %>! </h2>
+
+  <div class="profile-info">
+
+    <div class="profile-details">
+      <h3> Profile info: </h3>
+        <p> First name: <%= @profile.first_name %> </p>
+        <p> Last name: <%= @profile.last_name %> </p>
+        <p> About me: <%= @profile.bio %> </p>
+    </div>
+
+    <div class="profile-photo">
+      <h3> Photo coming soon! </h3>
+    </div>
+
+  </div>
+
+</div>
