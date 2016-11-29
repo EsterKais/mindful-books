@@ -74,3 +74,33 @@ body {
   padding-top: 3px;
   text-align: center;
 }
+
+// FORM
+.form {
+
+  h2 {
+    padding-top: 50px;
+  }
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .form-field {
+    min-height: 50px;
+    max-height: 50px;
+    min-width: 50%;
+    max-width: 50%;
+    border-radius: 5px;
+  }
+
+  .form-area {
+    min-height: 100px;
+    max-height: 100px;
+    min-width: 50%;
+    max-width: 50%;
+    border-radius: 5px;
+
+  }
+
+}
