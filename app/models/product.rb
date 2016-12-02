@@ -1,4 +1,4 @@
 class Product < ApplicationRecord
   belongs_to :user
-  has_one :photo
+  has_many :photos, dependent: :destroy
 end
