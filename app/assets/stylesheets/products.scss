@@ -1,3 +1,24 @@
 // Place all the styles related to the Products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.product-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .product-listing {
+    border: 1px solid grey;
+  }
+
+  .product-listing-pic {
+    
+    img {
+      border: 1px solid grey;
+      border-radius: 5px;
+      max-height: 300px;
+      max-width: 250px;
+    }
+  }
+
+}
