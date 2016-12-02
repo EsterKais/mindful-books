@@ -1,5 +1,20 @@
 class ProductsController < ApplicationController
 
+  def new
+    @product = Product.new
+  end
+
+  def create
+    @product = current_user.products.build(product_params)
+    # note: @product = current_user.products.build(product_params)
+
+    if @product.save
+      redirect_to profile_path(@product.user.profile.id), notice: "Addition Created - Thank you!"
+    else
+      render :new
+    end
+  end
+
   def edit
     @product = Product.find(params[:id])
   end

@@ -27,6 +27,9 @@
         <%= link_to "Edit", edit_product_path(product.id) %> -->
         <%= link_to "Delete", product_path(product.id), method: :delete, data: { confirm: "Are you sure?" } %> </p>
     <% end %>
+
+    <h3> Have something new to add? </h3>
+    <%= link_to "New addition", new_product_path %>
   </div>
 
 </div>
