@@ -13,8 +13,15 @@ class ProductsController < ApplicationController
     else
       render :edit
     end
-
   end
+
+  def destroy
+    @product = Product.find(params[:id])
+    @product.destroy
+
+    redirect_to profile_path(@product.user.profile.id), notice: "Addition successfully removed!"
+  end
+
 
   private
 
