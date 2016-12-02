@@ -1,6 +1,6 @@
 <div class="form">
 
-  <%= form_for @profile do |f| %>
+  <%= form_for @profile, html: { multipart: true } do |f| %>
 
     <% @profile.errors.full_messages.each do |msg| %>
       <p><%= msg %></p>
@@ -18,7 +18,19 @@
     <br>
     <%= f.text_area :bio, rows: 5, placeholder: "Tell us about yourself..", class: "form-area" %>
     <br>
-    <%= f.submit "Create Profile" %>
+
+    <p> Upload a photo of yourself </p>
+      <% if @profilephoto %>
+        <%# @profilephotos.each do |photo| %>
+          <%= image_tag @profilephoto.image %>
+          <%= link_to "Delete", profile_photo_path( @profilephoto.id ), method: :delete, data: { confirm: "Are you sure?" } %>
+        <%# end %>
+      <% end %>
+
+    <%= file_field_tag "images[]", type: :file, multiple: true %>
+
+    <br>
+    <%= f.submit (@profile.new_record? ? "Create Profile" : "Update Profile") %>
 
   <% end %>
 

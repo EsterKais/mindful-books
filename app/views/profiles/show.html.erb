@@ -1,5 +1,5 @@
 <div class="container">
-  
+
   <h2> Hello, <%= @profile.first_name %>! </h2>
 
   <div class="profile-info">
@@ -13,7 +13,9 @@
     </div>
 
     <div class="profile-photo">
-      <h3> Photo coming soon! </h3>
+      <%# @profilephotos.each do |photo| %>
+        <%= image_tag @profilephoto.image %>
+      <%# end %>
     </div>
 
   </div>

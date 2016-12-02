@@ -1,6 +1,6 @@
 class Profile < ApplicationRecord
   belongs_to :user
-  has_one :photo
+  has_one :profile_photo
 
   validates :first_name, presence: true
   validates :last_name, presence: true
