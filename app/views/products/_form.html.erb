@@ -1,0 +1,22 @@
+<div class="form">
+
+  <%= form_for @product, html: { multipart: true } do |f| %>
+
+    <% @product.errors.full_messages.each do |msg| %>
+      <p><%= msg %></p>
+    <% end %>
+
+    <%= f.label :name, class: "form-field" %>
+    <br>
+    <%= f.text_field :name, placeholder: "Last Name", class: "form-field" %>
+    <br>
+    <%= f.label :description, class: "form-field" %>
+    <br>
+    <%= f.text_area :description, rows: 5, placeholder: "Tell us about this addition..", class: "form-area" %>
+    <br>
+
+    <%= f.submit (@product.new_record? ? "Create Addition" : "Update Addition") %>
+
+  <% end %>
+
+</div>

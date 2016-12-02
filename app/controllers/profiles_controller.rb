@@ -3,6 +3,7 @@ class ProfilesController < ApplicationController
   def show
       @profile = Profile.find(params[:id])
       @profilephoto = @profile.profile_photo
+      @products = current_user.products.all
   end
 
   def new
