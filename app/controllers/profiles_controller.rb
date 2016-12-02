@@ -29,6 +29,9 @@ class ProfilesController < ApplicationController
   end
 
   def update
+
+    @profile = Profile.find(params[:id])
+
     if @profile.update(profile_params)
       image_params.each do |image|
         @profile.photos.create(image: image)
@@ -38,6 +41,7 @@ class ProfilesController < ApplicationController
     else
       render :edit
     end
+
   end
 
   private
