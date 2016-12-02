@@ -1,0 +1,27 @@
+<div class="container">
+
+  <h2> <%= @product.name %> </h2>
+
+  <div class="profile-info">
+
+    <div class="profile-details">
+      <h3> Description: </h3>
+      <p> <%= @product.description %> </p>
+      <h3> Added by: </h3>
+        <p>
+          <%= link_to profile_path(@product.user.profile.id) do %>
+            <%= @product.user.profile.first_name %>
+          <% end %>
+        </p>
+    </div>
+
+    <div class="profile-photo">
+      <%# @profilephotos.each do |photo| %>
+        <% if @productphoto %>
+          <%= image_tag @productphoto.image %>
+        <% end %>
+      <%# end %>
+    </div>
+
+  </div>
+</div>

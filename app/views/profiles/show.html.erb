@@ -14,7 +14,9 @@
 
     <div class="profile-photo">
       <%# @profilephotos.each do |photo| %>
-        <%= image_tag @profilephoto.image %>
+        <% if @profilephoto %>
+          <%= image_tag @profilephoto.image %>
+        <% end %>
       <%# end %>
     </div>
 
@@ -23,9 +25,14 @@
   <div class="product-options">
     <h3> Your current additions: </h3>
     <% @products.each do |product| %>
-      <p> Product name: <%= product.name %> -->
+      <p>
+        <%= link_to product_path(product.id) do %>
+          <%= product.name %>
+        <% end %> -->
+
         <%= link_to "Edit", edit_product_path(product.id) %> -->
-        <%= link_to "Delete", product_path(product.id), method: :delete, data: { confirm: "Are you sure?" } %> </p>
+        <%= link_to "Delete", product_path(product.id), method: :delete, data: { confirm: "Are you sure?" } %>
+      </p>
     <% end %>
 
     <h3> Have something new to add? </h3>
