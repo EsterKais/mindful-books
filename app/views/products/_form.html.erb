@@ -15,6 +15,17 @@
     <%= f.text_area :description, rows: 5, placeholder: "Tell us about this addition..", class: "form-area" %>
     <br>
 
+    <p> Upload a photo of the addition </p>
+      <% if @productphoto %>
+        <%# @profilephotos.each do |photo| %>
+          <%= image_tag @productphoto.image %>
+          <%= link_to "Delete", product_photo_path( @productphoto.id ), method: :delete, data: { confirm: "Are you sure?" } %>
+        <%# end %>
+      <% end %>
+
+    <%= file_field_tag "images[]", type: :file, multiple: true %>
+
+
     <%= f.submit (@product.new_record? ? "Create Addition" : "Update Addition") %>
 
   <% end %>

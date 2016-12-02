@@ -8,7 +8,19 @@
       <h3> Description: </h3>
       <p> <%= @product.description %> </p>
       <h3> Added by: </h3>
-      <p> <%= @product.user.profile.first_name %> </p>
+        <p>
+          <%= link_to profile_path(@product.user.profile.id) do %>
+            <%= @product.user.profile.first_name %>
+          <% end %>
+        </p>
+    </div>
+
+    <div class="profile-photo">
+      <%# @profilephotos.each do |photo| %>
+        <% if @productphoto %>
+          <%= image_tag @productphoto.image %>
+        <% end %>
+      <%# end %>
     </div>
 
   </div>

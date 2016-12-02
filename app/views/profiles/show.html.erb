@@ -14,7 +14,9 @@
 
     <div class="profile-photo">
       <%# @profilephotos.each do |photo| %>
-        <%= image_tag @profilephoto.image %>
+        <% if @profilephoto %>
+          <%= image_tag @profilephoto.image %>
+        <% end %>
       <%# end %>
     </div>
 
