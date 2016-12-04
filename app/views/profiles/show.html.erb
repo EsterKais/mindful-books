@@ -60,8 +60,14 @@
   </div>
   <% else %>
 
-    <%= link_to friendships_path(:friend_id => @profile.user), :method => :post do %>
-      <h3> Let's connect! </h3>
+    <% current_user.friendships.each do |friendship| %>
+      <% if friendship.friend_id != @profile.user.id %>
+        <%= link_to friendships_path(:friend_id => @profile.user), :method => :post do %>
+          <h3> Let's connect! </h3>
+        <% end %>
+      <% else %>
+        <h3> You're friends! </h3>
+      <% end %>
     <% end %>
 
   <% end %>
