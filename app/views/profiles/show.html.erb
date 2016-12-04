@@ -47,9 +47,13 @@
 
       <div class="friends-list">
         <h3> Your friends: </h3>
-        <% current_user.friends.each do |friend| %>
+        <% current_user.friendships.each do |friendship| %>
           <div class="friend">
-            <%= friend.email %>
+            <%= link_to profile_path(friendship.friend.profile.id) do %>
+              <%= friendship.friend.email %>
+            <% end %>
+             -->
+            <%= link_to "Unfriend", friendship, :method => :delete, data: { confirm: "Are you sure?" } %>
           </div>
         <% end %>
       </div>
