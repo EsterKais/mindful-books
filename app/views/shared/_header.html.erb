@@ -6,10 +6,17 @@
   </div>
 
   <div class="navigation">
-    <%= link_to "Home" %>
-    <%= link_to "About" %>
-    <%= link_to "Log In" %>
-    <!-- If user logged in, profile management, else log in -->
+
+    <% if user_signed_in? %>
+      <%= link_to "My Profile", profile_path(current_user.profile.id) %>
+    <% end %>
+
+    <% if !user_signed_in? %>
+      <%= link_to "Log In", new_user_session_path %>
+    <% else %>
+      <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+    <% end %>
+
   </div>
 
 </div>
