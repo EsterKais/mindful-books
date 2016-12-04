@@ -2,14 +2,14 @@
 
   <h2> Welcome to MindfulBooks! </h2>
 
-  <div class="product-options">
-    <h3> Book suggestions: </h3>
-    <% @products.each do |product| %>
+  <div class="product-listings">
+  <% @products.each do |product| %>
 
-      <div class="product-listing">
-        <%= link_to product_path(product.id) do %>
+    <div class="product-listing">
+    <%= link_to product_path(product.id) do %>
+
+      <div class="product-listing-name">
           <%= product.name %>
-        <% end %> -->
       </div>
 
       <div class="product-listing-pic">
@@ -18,7 +18,9 @@
         <% end %>
       </div>
 
-      <% end %>
+    <% end %>
+    </div>
 
+  <% end %>
   </div>
 </div>
