@@ -1,9 +1,13 @@
 class ProfilesController < ApplicationController
 
+  def index
+    @profiles = Profile.all
+  end
+
   def show
       @profile = Profile.find(params[:id])
       @profilephoto = @profile.profile_photo
-      @products = current_user.products.all
+      @products = @profile.user.products.all
   end
 
   def new
