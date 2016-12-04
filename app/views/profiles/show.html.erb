@@ -25,7 +25,7 @@
   </div>
 
   <% if current_user.id == @profile.user.id %>
-
+  <div class="profile-management">
     <% if @products.length > 0 %>
       <div class="product-options">
         <h3> Your current additions: </h3>
@@ -46,14 +46,14 @@
       </div>
 
       <div class="friends-list">
-        <h3> Your friends list </h3>
+        <h3> Your friends: </h3>
         <% current_user.friends.each do |friend| %>
           <div class="friend">
             <%= friend.email %>
           </div>
         <% end %>
       </div>
-
+  </div>
   <% else %>
 
     <%= link_to friendships_path(:friend_id => @profile.user), :method => :post do %>

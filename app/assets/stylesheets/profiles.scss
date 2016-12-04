@@ -31,3 +31,13 @@ h2 {
   }
 
 }
+
+.profile-management {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .friends-list {
+    margin-right: 7%;
+  }
+}
