@@ -25,7 +25,7 @@
   </div>
 
   <% if current_user.id == @profile.user.id %>
-
+  <div class="profile-management">
     <% if @products.length > 0 %>
       <div class="product-options">
         <h3> Your current additions: </h3>
@@ -45,8 +45,31 @@
         <%= link_to "New addition", new_product_path %>
       </div>
 
+      <div class="friends-list">
+        <h3> Your friends: </h3>
+        <% current_user.friendships.each do |friendship| %>
+          <div class="friend">
+            <%= link_to profile_path(friendship.friend.profile.id) do %>
+              <%= friendship.friend.email %>
+            <% end %>
+             -->
+            <%= link_to "Unfriend", friendship, :method => :delete, data: { confirm: "Are you sure?" } %>
+          </div>
+        <% end %>
+      </div>
+  </div>
   <% else %>
-    <h3> Let's connect! </h3>
+
+    <% current_user.friendships.each do |friendship| %>
+      <% if friendship.friend_id != @profile.user.id %>
+        <%= link_to friendships_path(:friend_id => @profile.user), :method => :post do %>
+          <h3> Let's connect! </h3>
+        <% end %>
+      <% else %>
+        <h3> You're friends! </h3>
+      <% end %>
+    <% end %>
+
   <% end %>
 
 </div>
