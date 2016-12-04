@@ -22,6 +22,7 @@
 
   </div>
 
+  <% if @products.length > 0 %>
   <div class="product-options">
     <h3> Your current additions: </h3>
     <% @products.each do |product| %>
@@ -34,9 +35,11 @@
         <%= link_to "Delete", product_path(product.id), method: :delete, data: { confirm: "Are you sure?" } %>
       </p>
     <% end %>
+  <% end %>
 
-    <h3> Have something new to add? </h3>
+    <h3> Have a new suggestion to add? </h3>
     <%= link_to "New addition", new_product_path %>
   </div>
+
 
 </div>

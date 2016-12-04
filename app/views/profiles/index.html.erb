@@ -1,0 +1,26 @@
+<div class="container">
+
+  <h2> Welcome to the Community! </h2>
+
+  <div class="product-listings">
+  <% @profiles.each do |profile| %>
+
+    <div class="product-listing">
+    <%= link_to profile_path(profile.id) do %>
+
+      <div class="product-listing-name">
+          <%= profile.full_name %>
+      </div>
+
+      <div class="product-listing-pic">
+        <% if profile.profile_photo %>
+          <%= image_tag profile.profile_photo.image %>
+        <% end %>
+      </div>
+
+    <% end %>
+    </div>
+
+  <% end %>
+  </div>
+</div>
