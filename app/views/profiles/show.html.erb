@@ -45,8 +45,21 @@
         <%= link_to "New addition", new_product_path %>
       </div>
 
+      <div class="friends-list">
+        <h3> Your friends list </h3>
+        <% current_user.friends.each do |friend| %>
+          <div class="friend">
+            <%= friend.email %>
+          </div>
+        <% end %>
+      </div>
+
   <% else %>
-    <h3> Let's connect! </h3>
+
+    <%= link_to friendships_path(:friend_id => @profile.user), :method => :post do %>
+      <h3> Let's connect! </h3>
+    <% end %>
+
   <% end %>
 
 </div>
