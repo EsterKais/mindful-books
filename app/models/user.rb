@@ -6,15 +6,13 @@ class User < ApplicationRecord
 
   has_one :profile, dependent: :destroy
   has_many :products, dependent: :destroy
-  
+
+  # FRIENDSHIP MODEL ASSOCIATIONS
   has_many :friendships
   has_many :friends, :through => :friendships
 
-  # def has_profile?
-  #   profile.present?
-  # end
+  has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
+  has_many :inverse_friends, :through => :inverse_friendships, :source => :user
+  # END OF FRIENDSHIP MODEL ASSOCIATIONS
 
-  # def full_name
-  #   profile.full_name
-  # end
 end
