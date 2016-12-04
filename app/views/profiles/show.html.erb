@@ -2,6 +2,7 @@
 
   <h2> Hello, <%= @profile.first_name %>! </h2>
 
+<!-- START: PROFILE INFORMATION AND PICTURE -->
   <div class="profile-info">
 
     <div class="profile-details">
@@ -12,22 +13,24 @@
         <% if current_user.id == @profile.user.id %>
           <p> <%= link_to "Update", edit_profile_path(@profile) %>
         <% end %>
-    </div>
+    </div> <!-- class: profile-details -->
 
     <div class="profile-photo">
-      <%# @profilephotos.each do |photo| %>
-        <% if @profilephoto %>
-          <%= image_tag @profilephoto.image %>
-        <% end %>
-      <%# end %>
-    </div>
+      <% if @profilephoto %>
+        <%= image_tag @profilephoto.image %>
+      <% end %>
+    </div> <!-- class: profile-photo -->
 
-  </div>
+  </div> <!-- class: profile-info -->
 
-  <% if current_user.id == @profile.user.id %>
+<!-- END: PROFILE INFORMATION AND PICTURE -->
+
+  <% if current_user.id == @profile.user.id %>  <!-- START: AUTHENTICATE CURRENT USER == PROFILE -->
   <div class="profile-management">
+
+<!-- START: MANAGING PRODUCTS -->
     <% if @products.length > 0 %>
-      <div class="product-options">
+    <div class="product-options">
         <h3> Your current additions: </h3>
         <% @products.each do |product| %>
           <p>
@@ -39,27 +42,57 @@
             <%= link_to "Delete", product_path(product.id), method: :delete, data: { confirm: "Are you sure?" } %>
           </p>
         <% end %>
-      <% end %>
-
-        <h3> Have a new suggestion to add? </h3>
-        <%= link_to "New addition", new_product_path %>
-      </div>
-
-      <div class="friends-list">
-        <h3> Your friends: </h3>
-        <% current_user.friendships.each do |friendship| %>
-          <div class="friend">
-            <%= link_to profile_path(friendship.friend.profile.id) do %>
-              <%= friendship.friend.email %>
-            <% end %>
-             -->
-            <%= link_to "Unfriend", friendship, :method => :delete, data: { confirm: "Are you sure?" } %>
-          </div>
+<!-- START: ADDING A NEW PRODUCT -->
+        <%= link_to new_product_path do %>
+          <h3> Have a new suggestion to add? </h3>
         <% end %>
-      </div>
-  </div>
-  <% else %>
+<!-- END: ADDING A NEW PRODUCT -->
+    <% end %>
+    </div> <!-- class: product-options -->
+<!-- END: MANAGING PRODUCTS -->
 
+<!-- START: MANAGING FRIENDS -->
+      <div class="friends-list">
+        <h3> Friends Management </h3>
+
+        <div class="friends">
+          <h3> Your friends: </h3>
+        </div> <!-- class: friends -->
+
+        <div class="friend-requests">
+          <h3> Requesting to be friends: </h3>
+
+          <% current_user.inverse_friendships.each do |inverse_friendship| %>
+            <div class="friend">
+              <%= link_to profile_path(inverse_friendship.friend.profile.id) do %>
+                <%= inverse_friendship.user.email %>
+              <% end %>
+            </div> <!-- class: friend -->
+          <% end %>
+
+        </div> <!-- class: friend-requests -->
+
+        <div class="pending-friend-requests">
+          <h3> Pending friend requests: </h3>
+
+          <% current_user.friendships.each do |friendship| %>
+            <div class="friend">
+              <%= link_to profile_path(friendship.friend.profile.id) do %>
+                <%= friendship.friend.email %>
+              <% end %>
+               -->
+              <%= link_to "Cancel request", friendship, :method => :delete, data: { confirm: "Are you sure?" } %>
+            </div> <!-- class: friend -->
+          <% end %>
+
+        </div> <!-- class: pending-friend-requests -->
+      </div> <!-- class: friends-list -->
+    </div> <!-- class: profile-management -->
+<!-- END: MANAGING FRIENDS -->
+
+  <% else %>  <!-- CONTINUE: AUTHENTICATE CURRENT USER == PROFILE -->
+
+<!-- START: IF THIS IS NOT CURRENT USER'S PROFILE AND YOU ARE NOT FRIENDS YET -->
     <% current_user.friendships.each do |friendship| %>
       <% if friendship.friend_id != @profile.user.id %>
         <%= link_to friendships_path(:friend_id => @profile.user), :method => :post do %>
@@ -69,7 +102,7 @@
         <h3> You're friends! </h3>
       <% end %>
     <% end %>
+<!-- END: IF THIS IS NOT CURRENT USER'S PROFILE AND YOU ARE NOT FRIENDS YET -->
 
-  <% end %>
-
-</div>
+  <% end %>  <!-- END: AUTHENTICATE CURRENT USER == PROFILE -->
+</div> <!-- class: container -->

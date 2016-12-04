@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   def index
     @products = Product.all
@@ -62,7 +62,7 @@ class ProductsController < ApplicationController
     else
       redirect_to root_path, notice: "You don't have permission!"
     end
-    
+
   end
 
 
