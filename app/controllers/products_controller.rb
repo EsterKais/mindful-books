@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
 
   def index
     @products = Product.all
@@ -10,7 +11,7 @@ class ProductsController < ApplicationController
   end
 
   def new
-    @product = Product.new
+    @product = current_user.products.build
   end
 
   def create
@@ -29,8 +30,13 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @product = Product.find(params[:id])
-    @productphoto = @product.product_photo
+    if current_user.id == @product.user.id
+      @product = Product.find(params[:id])
+      @productphoto = @product.product_photo
+    else
+      redirect_to root_path, notice: "You don't have permission!"
+    end
+
   end
 
   def update
@@ -48,10 +54,15 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product = Product.find(params[:id])
-    @product.destroy
+    if current_user.id == @product.user.id
+      @product = Product.find(params[:id])
+      @product.destroy
 
-    redirect_to profile_path(@product.user.profile.id), notice: "Addition successfully removed!"
+      redirect_to profile_path(@product.user.profile.id), notice: "Addition successfully removed!"
+    else
+      redirect_to root_path, notice: "You don't have permission!"
+    end
+    
   end
 
 

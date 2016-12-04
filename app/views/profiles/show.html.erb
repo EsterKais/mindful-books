@@ -9,7 +9,9 @@
         <p> First name: <%= @profile.first_name %> </p>
         <p> Last name: <%= @profile.last_name %> </p>
         <p> About me: <%= @profile.bio %> </p>
-        <p> <%= link_to "Update", edit_profile_path(@profile) %>
+        <% if current_user.id == @profile.user.id %>
+          <p> <%= link_to "Update", edit_profile_path(@profile) %>
+        <% end %>
     </div>
 
     <div class="profile-photo">
@@ -22,24 +24,29 @@
 
   </div>
 
-  <% if @products.length > 0 %>
-  <div class="product-options">
-    <h3> Your current additions: </h3>
-    <% @products.each do |product| %>
-      <p>
-        <%= link_to product_path(product.id) do %>
-          <%= product.name %>
-        <% end %> -->
+  <% if current_user.id == @profile.user.id %>
 
-        <%= link_to "Edit", edit_product_path(product.id) %> -->
-        <%= link_to "Delete", product_path(product.id), method: :delete, data: { confirm: "Are you sure?" } %>
-      </p>
-    <% end %>
+    <% if @products.length > 0 %>
+      <div class="product-options">
+        <h3> Your current additions: </h3>
+        <% @products.each do |product| %>
+          <p>
+            <%= link_to product_path(product.id) do %>
+              <%= product.name %>
+            <% end %> -->
+
+            <%= link_to "Edit", edit_product_path(product.id) %> -->
+            <%= link_to "Delete", product_path(product.id), method: :delete, data: { confirm: "Are you sure?" } %>
+          </p>
+        <% end %>
+      <% end %>
+
+        <h3> Have a new suggestion to add? </h3>
+        <%= link_to "New addition", new_product_path %>
+      </div>
+
+  <% else %>
+    <h3> Let's connect! </h3>
   <% end %>
-
-    <h3> Have a new suggestion to add? </h3>
-    <%= link_to "New addition", new_product_path %>
-  </div>
-
 
 </div>
