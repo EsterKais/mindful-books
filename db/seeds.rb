@@ -19,7 +19,9 @@ ester_profile = Profile.create(first_name: "Ester", last_name: "Moon", bio: "Hel
 profilephoto_ester = ProfilePhoto.create(remote_image_url: "http://res.cloudinary.com/dfc7k24vb/image/upload/v1480584013/mindful-living/moonmoon.jpg", profile: ester_profile)
 
 powerofnow_ester = Product.create(name: "The Power of Now", description: "The best book ever!", user: ester)
-newearth_ester = Product.create(name: "The New Earth", description: "Continuation of Power of Now", user: ester)
+newearth_ester = Product.create(name: "The New Earth", description: "Continuation of Power of Now.", user: ester)
+mindfulness_ester = Product.create(name: "Mindfulness Guide", description: "Finding peace in a franctic world.", user: ester)
 
-productphoto_powerofnow = ProductPhoto.create(remote_image_url: "http://res.cloudinary.com/dfc7k24vb/image/upload/v1480693852/bkzhuat9cufjdud6qgcr.jpg", product: powerofnow_ester)
+productphoto_powerofnow = ProductPhoto.create(remote_image_url: "http://res.cloudinary.com/dfc7k24vb/image/upload/v1480856117/thePowerOfNow_yzbx9u.jpg", product: powerofnow_ester)
 productphoto_newearth = ProductPhoto.create(remote_image_url: "http://res.cloudinary.com/dfc7k24vb/image/upload/v1480693871/qxss1up34q1f3mtrkwxo.jpg", product: newearth_ester)
+productphoto_mindfulness = ProductPhoto.create(remote_image_url: "http://res.cloudinary.com/dfc7k24vb/image/upload/v1480856327/franticworld_esxhuw.jpg", product: mindfulness_ester)
