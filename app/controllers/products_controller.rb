@@ -1,5 +1,9 @@
 class ProductsController < ApplicationController
 
+  def index
+    @products = Product.all
+  end
+
   def show
     @product = Product.find(params[:id])
     @productphoto = @product.product_photo

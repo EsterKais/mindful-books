@@ -1,0 +1,26 @@
+<div class="container">
+
+  <h2> Welcome to MindfulBooks! </h2>
+
+  <div class="product-listings">
+  <% @products.each do |product| %>
+
+    <div class="product-listing">
+    <%= link_to product_path(product.id) do %>
+
+      <div class="product-listing-name">
+          <%= product.name %>
+      </div>
+
+      <div class="product-listing-pic">
+        <% if product.product_photo %>
+          <%= image_tag product.product_photo.image %>
+        <% end %>
+      </div>
+
+    <% end %>
+    </div>
+
+  <% end %>
+  </div>
+</div>
