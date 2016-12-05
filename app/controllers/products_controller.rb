@@ -16,7 +16,6 @@ class ProductsController < ApplicationController
 
   def create
     @product = current_user.products.build(product_params)
-    # note: @product = current_user.products.build(product_params)
 
     if @product.save
       image_params.each do |image|
@@ -30,13 +29,12 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    @product = Product.find(params[:id])
     if current_user.id == @product.user.id
-      @product = Product.find(params[:id])
       @productphoto = @product.product_photo
     else
       redirect_to root_path, notice: "You don't have permission!"
     end
-
   end
 
   def update

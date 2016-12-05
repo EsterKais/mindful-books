@@ -17,10 +17,8 @@
 
     <p> Upload a photo of the addition </p>
       <% if @productphoto %>
-        <%# @profilephotos.each do |photo| %>
-          <%= image_tag @productphoto.image %>
+          <%= image_tag @productphoto.image.thumbnail %>
           <%= link_to "Delete", product_photo_path( @productphoto.id ), method: :delete, data: { confirm: "Are you sure?" } %>
-        <%# end %>
       <% end %>
 
     <%= file_field_tag "images[]", type: :file, multiple: true %>
