@@ -34,6 +34,19 @@ class ProfilesController < ApplicationController
       # end: if mutual_friends array is empty, automatically push to friend_requests array
       end
 
+      @friendships.each do |friendship|
+        if @mutual_friends.length > 0
+          match = @mutual_friends.find { |mutual_friend| mutual_friend.user_id == friendship.friend_id }
+          if match == nil
+            @pending_requests.push(friendship)
+          # else
+          #   @pending_requests.delete(friendship)
+          end
+        else
+          @pending_requests.push(friendship)
+        end
+      end
+
 # END: FRIEND SYSTEM
 
   end
