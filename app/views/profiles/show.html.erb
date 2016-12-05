@@ -57,33 +57,52 @@
 
         <div class="friends">
           <h3> Your friends: </h3>
+
+          <% @mutual_friends.each do |mutual_friend| %>
+            <%= mutual_friend.user.email %>
+          <% end %>
+          <%# debugger %>
         </div> <!-- class: friends -->
 
         <div class="friend-requests">
           <h3> Requesting to be friends: </h3>
 
-          <% current_user.inverse_friendships.each do |inverse_friendship| %>
-            <div class="friend">
-              <%= link_to profile_path(inverse_friendship.friend.profile.id) do %>
-                <%= inverse_friendship.user.email %>
-              <% end %>
-            </div> <!-- class: friend -->
+          <% @friend_requests.each do |friend_request| %>
+            <%= friend_request.user.email %> -->
+            <%= link_to "Accept request", friendships_path(:friend_id => friend_request.user), :method => :post, data: { confirm: "Are you sure?" } %>
           <% end %>
+
+          <%# current_user.friendships.each do |friendship| %>
+          <%# current_user.inverse_friendships.each do |inverse_friendship| %>
+            <div class="friend">
+              <%# if friendship.user_id != inverse_friendship.friend_id %>
+                <%#= link_to profile_path(inverse_friendship.friend.profile.id) do %>
+                  <%#= inverse_friendship.user.email %>
+                <%# end %>
+                <%#= link_to "Accept request", friendships_path(:friend_id => inverse_friendship.user), :method => :post, data: { confirm: "Are you sure?" } %>
+            <%# end %>
+            </div> <!-- class: friend -->
+          <%# end %>
+          <%# end %>
 
         </div> <!-- class: friend-requests -->
 
         <div class="pending-friend-requests">
           <h3> Pending friend requests: </h3>
-
+          <% current_user.inverse_friendships.each do |inverse_friendship| %>
           <% current_user.friendships.each do |friendship| %>
             <div class="friend">
-              <%= link_to profile_path(friendship.friend.profile.id) do %>
-                <%= friendship.friend.email %>
+              <% if friendship.user_id != inverse_friendship.friend_id %>
+                <%= link_to profile_path(friendship.friend.profile.id) do %>
+                  <%= friendship.friend.email %>
+                <% end %>
+                 -->
+                <%= link_to "Cancel request", friendship, :method => :delete, data: { confirm: "Are you sure?" } %>
               <% end %>
-               -->
-              <%= link_to "Cancel request", friendship, :method => :delete, data: { confirm: "Are you sure?" } %>
             </div> <!-- class: friend -->
           <% end %>
+          <% end %>
+
 
         </div> <!-- class: pending-friend-requests -->
       </div> <!-- class: friends-list -->
@@ -93,15 +112,15 @@
   <% else %>  <!-- CONTINUE: AUTHENTICATE CURRENT USER == PROFILE -->
 
 <!-- START: IF THIS IS NOT CURRENT USER'S PROFILE AND YOU ARE NOT FRIENDS YET -->
-    <% current_user.friendships.each do |friendship| %>
-      <% if friendship.friend_id != @profile.user.id %>
+    <%# current_user.friendships.each do |friendship| %>
+      <%# if friendship.friend_id != @profile.user.id %>
         <%= link_to friendships_path(:friend_id => @profile.user), :method => :post do %>
           <h3> Let's connect! </h3>
         <% end %>
-      <% else %>
+      <%# else %>
         <h3> You're friends! </h3>
-      <% end %>
-    <% end %>
+      <%# end %>
+    <%# end %>
 <!-- END: IF THIS IS NOT CURRENT USER'S PROFILE AND YOU ARE NOT FRIENDS YET -->
 
   <% end %>  <!-- END: AUTHENTICATE CURRENT USER == PROFILE -->

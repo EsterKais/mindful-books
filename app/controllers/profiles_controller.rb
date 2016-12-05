@@ -9,6 +9,33 @@ class ProfilesController < ApplicationController
       @profile = Profile.find(params[:id])
       @profilephoto = @profile.profile_photo
       @products = @profile.user.products.all
+
+# START: FRIEND SYSTEM
+      @friendships = current_user.friendships.all
+      @inverse_friendships = current_user.inverse_friendships.all
+      @mutual_friends = []
+      @friend_requests = []
+      @pending_requests = []
+
+      @friendships.each do |friendship|
+        @mutual_friends.concat(@inverse_friendships.where("user_id = ?", friendship.friend_id))
+      end
+
+      @inverse_friendships.each do |inverse_friendship|
+      # start: if mutual_friends array is empty, automatically push to friend_requests array
+        if @mutual_friends.length > 0
+          match = @mutual_friends.find { |mutual_friend| mutual_friend.user_id == inverse_friendship.user_id }
+          if match == nil
+            @friend_requests.push(inverse_friendship)
+          end
+        else
+          @friend_requests.push(inverse_friendship)
+        end
+      # end: if mutual_friends array is empty, automatically push to friend_requests array
+      end
+
+# END: FRIEND SYSTEM
+
   end
 
   def new
